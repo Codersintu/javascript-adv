@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayDate = function(str){
+        console.log(str,Date.now());
+    }
+
+    let intervalId = null; // Variable to store the interval ID
+
+    document.querySelector('#start').addEventListener('click', function(e){
+        if (intervalId === null) { // Check if there's no active interval
+            intervalId = setInterval(sayDate, 1000, "hi");
+        }
+    });
+
+    document.querySelector('#stop').addEventListener('click', function(e){
+        if (intervalId !== null) { // Check if there's an active interval
+            clearInterval(intervalId);
+            intervalId = null; // Reset the interval ID
+            console.log('stop');
+        }
+    });
+</script>
+</html>
+
+
+<!-- //Using setInterval vs setTimeout: The setInterval function sets up a recurring task, but it returns an interval ID, which you should use with clearInterval to 
+//stop the recurring task. clearTimeout is for stopping tasks set up with setTimeout.
+
+//Storing and Clearing the Interval: You should store the interval ID in a variable outside the event listener so that it can be accessed and cleared when the "Stop" 
+//button is clicked. -->
